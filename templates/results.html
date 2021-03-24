@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+	<div>
+		{% for website, values in product_dict.items() %}
+			<ul>
+			{% for i in range(values.title|length) %}
+				<li> Title : {{ values.title[i] }} </li>
+				<li> Price : {{ values.price[i] }} </li>
+				<li> Image Url : {{ values.url[i] }} </li>
+				<li> Product Page : {{ values.hyperlink[i] }}</li>
+				<br>
+			{% endfor %}
+			</ul>
+		{% endfor %}
+	</div>
+	
+{% endblock %}
+
