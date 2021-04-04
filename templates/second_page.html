@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script> 
+	console.log('a');
+	window.onload = function () { 
+	var server_status = true;
+	var status = false;
+	status = server_status;
+	
+	if (status){
+		document.getElementById("div1").style.display = "block";
+		document.getElementById("div2").style.display = "none";
+	}
+	else{
+		document.getElementById("div1").style.display = "none";
+		document.getElementById("div2").style.display = "block";
+	}
+	}
+	</script> 
+</head>
+<body>
+	<h1>{{title}} login</h1>
+	<div id="div1" name ="dashboard">
+		<a href="/dashboard"> Dashboard</a>
+	</div>
+	<div id="div2" name ="failed login">
+		<a href="/">Try again</a>
+	</div>
+	<div id="div3" name ="Chatbot">
+		<a href="/chatbot">Chatbot</a>
+	</div>
+	
+</body>
+</html>

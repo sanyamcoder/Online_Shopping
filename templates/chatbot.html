@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <title>Restaurant Chatbot</title>
+  <head>
+    <link href='https://fonts.googleapis.com/css?family=Alegreya' rel='stylesheet'>
+    <link rel="icon" href="">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <center>
+      <h1>
+      Restaurant Chatbot
+      </h1>
+    </center>
+    <div class="boxed">
+		<div>
+			<div id="chatbox">
+        </div>
+	    <div id="userInput">
+		  <label for="user-name">You:</label>
+          <input id="nameInput" type="text" name="msg" placeholder="Ask questions...Type 'quit' to exit" />
+        </div>
+		<script>
+			function getBotResponse() {
+				var rawText = $("#nameInput").val();
+				if (rawText === "quit"){
+					document.write('Have a good day!!');
+					document.write("You will be redirected to main page in 3 sec.");
+					setTimeout('redirect_dash()', 3000);	
+				}
+				
+				var userHtml = '<p class="userText"><span>' + rawText + "</span></p>";
+				$("#nameInput").val("");
+				$("#chatbox").append(userHtml);
+				document.getElementById("userInput")
+						.scrollIntoView({ block: "start", behavior: "smooth" });
+				
+				$.get("/response", { msg: rawText }).done(function(data) {
+				
+					if (data === "Redirecting to dashboard."){
+						setTimeout('redirect_dash()', 2000);
+					}
+					if (data === "Login to system."){
+						setTimeout('redirect_login()', 2000);
+					}
+					
+					
+					var botHtml = '<p class="botText"><span>' + data + "</span></p>";
+					$("#chatbox").append(botHtml);
+					document.getElementById("userInput")
+						.scrollIntoView({ block: "start", behavior: "smooth" });
+				});
+			}
+			$("#nameInput").keypress(function(e) {
+				if (e.which == 13) {
+					getBotResponse();
+				}	
+			});
+			function redirect_dash() {
+               window.location = "http://127.0.0.1:5000/dashboard";   
+            }            
+            function redirect_login() {
+               window.location = "http://127.0.0.1:5000/";   
+            }
+		</script>
+	</div>
+	</body>
+</html>
